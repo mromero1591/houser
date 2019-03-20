@@ -1,7 +1,6 @@
 module.exports = {
     get: function(req,res,next) {
         const dbInstance = req.app.get('db');
-
         dbInstance.get_houses()
         .then( houses => {
             res.status(200).send(houses);
@@ -27,13 +26,12 @@ module.exports = {
 
     delete: function(req,res,next) {
         const dbInstance = req.app.get('db');
-        const id = req.params;
-
+        const {id} = req.params;  
         dbInstance.delete_house(id)
         .then( () => {
             res.sendStatus(200);
         }).catch( err => {
-            console.log('error faced in deleteing: ', err);
+            //console.log('error faced in deleteing: ', err);
             res.status(500).send({errorMessage: "Could not remove house"});
         });
     }

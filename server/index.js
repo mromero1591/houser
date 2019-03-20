@@ -10,9 +10,9 @@ app.use(bodyParser.json());
 
 const {SERVER_PORT, DATABASE_URL} = process.env;
 
-massive(DATABASE_URL)
+massive(DATABASE_URL, {scripts: __dirname+'/db'})
 .then(dbInstance => {
-    app.set('db', dbInstance)
+    app.set('db', dbInstance);
 }).catch( err => {
     console.log('faced error connecting to database', err);
 })
