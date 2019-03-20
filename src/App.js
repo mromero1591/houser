@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './App.css';
 
 //CUSTOM COMPONENT
 import Header from './component/Header/Header';
