@@ -19,7 +19,7 @@ export default function House(props) {
           <div className="house-description-item">Desired Rent: {props.home.rent}</div>
         </div>
       </section>
-
+      <button className='house-card-delete' onClick={() => {props.deleteHouse(props.home.id)}}>X</button>
     </article>
   )
 }

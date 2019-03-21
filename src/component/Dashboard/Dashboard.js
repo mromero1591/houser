@@ -18,19 +18,31 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    this.getHomes();
+  }
+
+  deleteHouse = (id) => {
+    Axios.delete(`/api/houses/${id}`)
+    .then(res => {
+      this.getHomes();
+    }).catch(err => {
+      console.log('error in deleting a house: ', err);
+    });
+  }
+
+  getHomes = () => {
     Axios.get('/api/houses')
     .then( res => {
       this.setState({homes: res.data});
     }).catch(err => {
       console.log('faced error in inital get', err);
-    })
+    });
   }
-
 
   render() {
     const homes = this.state.homes.map( home => {
       return(
-        <House key={home.id} home={home}/>
+        <House key={home.id} home={home} deleteHouse={this.deleteHouse}/>
       );
     })
     return (
@@ -49,12 +61,6 @@ class Dashboard extends Component {
         
       </section>
     )
-  }
-}
-
-function mapStateToProps(state) {
-  return {
-    homes: state
   }
 }
 

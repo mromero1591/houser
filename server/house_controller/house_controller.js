@@ -28,7 +28,7 @@ module.exports = {
         const dbInstance = req.app.get('db');
         const {id} = req.params;  
         dbInstance.delete_house(id)
-        .then( () => {
+        .then( (houses) => {
             res.sendStatus(200);
         }).catch( err => {
             //console.log('error faced in deleteing: ', err);
