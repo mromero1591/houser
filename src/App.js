@@ -10,11 +10,11 @@ import Wizard from "./component/Wizard/Wizard";
 class App extends Component {
   render() {
     return (
-      <div>
+      <main className='main'>
         <Header />
         <Dashboard />
         <Wizard />
-      </div>
+      </main>
     );
   }
 }

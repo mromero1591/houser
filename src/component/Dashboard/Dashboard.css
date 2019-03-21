@@ -1,0 +1,39 @@
+.dashboard {
+    background-color: #E5F4EB;
+    /* display: flex;
+    flex-flow: column nowrap;
+    align-items: center; */
+    margin: 0 21%;
+    padding: 10px 20px;
+}
+
+.dashboard-title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-title {
+    color: #3b5249;
+    font-size: 40px;
+}
+
+.btn-title {
+    background-color: #8BE993;
+    padding: 10px 15px;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* Home listing section */
+.homelisting {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.homelisting-section-title {
+    padding-left: 20px;
+    font-weight: 700;
+}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import "./Header.css";
 
 export default function Header() {
     return (
-        <div>
-            Header Comp
-        </div>
+        <header className="header">
+            <div className='header-title'> <i className="fas fa-home"></i> Houser</div>
+        </header>
     )
 }
