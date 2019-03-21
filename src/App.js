@@ -3,8 +3,7 @@ import './App.css';
 
 //CUSTOM COMPONENT
 import Header from './component/Header/Header';
-import Dashboard from './component/Dashboard/Dashboard';
-import Wizard from "./component/Wizard/Wizard";
+import routes from './routes';
 
 
 class App extends Component {
@@ -12,8 +11,7 @@ class App extends Component {
     return (
       <main className='main'>
         <Header />
-        <Dashboard />
-        <Wizard />
+        {routes}
       </main>
     );
   }

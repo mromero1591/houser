@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import Axios from 'axios';
-import store from '../../ducks/store';
-
 import "./Dashboard.css";
 
 //Custom component
 import House from '../House/House';
+import {Link} from 'react-router-dom';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -49,7 +47,9 @@ class Dashboard extends Component {
       <section className='dashboard'>
         <div className="dashboard-title-section">
           <div className='dashboard-title'>Dashboard</div>
-          <button className='btn btn-title'>Add New Property</button>
+          <Link to='/wizard'>
+            <button className='btn btn-title'>Add New Property</button>
+          </Link>
         </div>
         <hr/>
         <section className='homelisting'>

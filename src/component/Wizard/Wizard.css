@@ -1,0 +1,23 @@
+.wizard-section {
+    background-color: #E5F4EB;
+    margin: 0 21%;
+    padding: 10px 20px;
+}
+
+.title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    color: #3b5249;
+    font-size: 40px;
+}
+
+.cancel-btn {
+    background-color: #FEC2C2;
+    padding: 10px;
+    font-weight: 700;
+    border: none;
+}
