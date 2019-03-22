@@ -1,4 +1,5 @@
 const initialState = {
+    homes: [],
     house_name: '',
     street_line_one: '',
     city: '',
@@ -9,6 +10,8 @@ const initialState = {
     img: ''
 }
 
+const ADD_HOME = 'ADD_HOME';
+const REMOVE_HOME = 'REMOVE_HOME';
 const UPDATE_HOUSE_NAME = 'UPDATE_HOUSE_NAME';
 const UPDATE_STREET_LINE_ONE = "UPDATE_STREET_LINE_ONE";
 const UPDATE_CITY = "UPDATE_CITY";
@@ -17,9 +20,20 @@ const UPDATE_ZIP_CODE = "UPDATE_ZIP_CODE";
 const UPDATE_MORTGAGE = "UPDATE_MORTGAGE";
 const UPDATE_RENT = "UPDATE_RENT";
 const UPDATE_IMG = "UPDATE_IMG";
+const CLEAR_STATE = "CLEAR_STATE";
 
 function reducer(state = initialState, action) {
     switch (action.type) {
+        case ADD_HOME:
+            const newState = Object.assign({}, state);
+            newState.homes.push(action.payload);
+            return newState;
+        case REMOVE_HOME:
+            const oldHome = action.payload;
+            const indexOfHome = state.homes.findIndex( home => {
+                return home.house_name == oldHome.home_name;
+            });
+            return Object.assign({}, state, {homes: state.homes.splice(indexOfHome, 1)});
         case UPDATE_HOUSE_NAME:
             return Object.assign({}, state, {house_name: action.payload});
         case UPDATE_STREET_LINE_ONE:
@@ -36,8 +50,24 @@ function reducer(state = initialState, action) {
             return Object.assign({}, state, {rent: action.payload});
         case UPDATE_IMG:
             return Object.assign({}, state, {img: action.payload});
+        case CLEAR_STATE:
+            return Object.assign({}, initialState);
         default: 
             return state;
+    }
+}
+
+export function addHome(home) {
+    return {
+        type: ADD_HOME,
+        payload: home
+    }
+}
+
+export function removeHome(home) {
+    return {
+        type: REMOVE_HOME,
+        payload: home
     }
 }
 
@@ -96,5 +126,12 @@ export function updateImg(img) {
         payload: img
     }
 }
+
+export function clearState() {
+    return {
+        type: CLEAR_STATE
+    }
+}
+
 
 export default reducer;

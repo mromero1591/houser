@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import './Wizard.css';
 
-export default class Wizard extends Component {
+import './Wizard.css';
+import wizardRoutes from '../../routes/wizardRoutes';
+
+class Wizard extends Component {
     render() {
         return(
             <section className='wizard-section'>
@@ -12,7 +14,10 @@ export default class Wizard extends Component {
                         <button className='btn cancel-btn'>Cancel</button>
                     </Link>
                 </section>
+                {wizardRoutes}
             </section>
         )
     }
 }
+
+export default Wizard;

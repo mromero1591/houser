@@ -15,7 +15,7 @@ module.exports = {
 
         const {house_name, street_line_one, city, state, zip_code, mortgage, rent, img } = req.body;
 
-        dbInstance.create_house([house_name, street_line_one, city, state, zip_code, mortgage, rent, img])
+        dbInstance.create_house([house_name, street_line_one, state, city, zip_code, mortgage, rent, img])
         .then( () => {
             res.sendStatus(200);
         }).catch( err => {

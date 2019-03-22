@@ -1,53 +1,48 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import "./Dashboard.css";
+import {connect} from 'react-redux';
 
-//Custom component
+//Custom Import
 import House from '../House/House';
 import {Link} from 'react-router-dom';
+import {addHome, removeHome} from '../../ducks/reducer';
+import "./Dashboard.css";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      homes: []
-    }
-  }
-
-  componentDidMount() {
-    this.getHomes();
-  }
-
-  deleteHouse = (id) => {
-    Axios.delete(`/api/houses/${id}`)
-    .then(res => {
-      this.getHomes();
-    }).catch(err => {
-      console.log('error in deleting a house: ', err);
-    });
-  }
-
-  getHomes = () => {
+  componentWillMount() {
     Axios.get('/api/houses')
     .then( res => {
-      this.setState({homes: res.data});
+      const homes = res.data;
+      homes.forEach(home => {
+        this.props.addHome(home);
+      });
     }).catch(err => {
       console.log('faced error in inital get', err);
     });
   }
 
+  deleteHouse = (id) => {
+    Axios.delete(`/api/houses/${id}`)
+    .then(res => {
+      this.props.removeHome(id);
+    }).catch(err => {
+      console.log('error in deleting a house: ', err);
+    });
+  }
+
   render() {
-    const homes = this.state.homes.map( home => {
+    const homes = this.props.homes.map( home => {
+console.log(home);
       return(
         <House key={home.id} home={home} deleteHouse={this.deleteHouse}/>
       );
     })
+
     return (
       <section className='dashboard'>
         <div className="dashboard-title-section">
           <div className='dashboard-title'>Dashboard</div>
-          <Link to='/wizard'>
+          <Link to='/wizard/step1'>
             <button className='btn btn-title'>Add New Property</button>
           </Link>
         </div>
@@ -58,10 +53,15 @@ class Dashboard extends Component {
           </div>
           {homes}
         </section>
-        
       </section>
     )
   }
 }
 
-export default Dashboard;
+function mapStateToProps(state) {
+  return {
+    homes: state.homes
+  }
+}
+
+export default connect(mapStateToProps, {addHome, removeHome})(Dashboard);

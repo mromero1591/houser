@@ -9,10 +9,10 @@ import routes from './routes';
 class App extends Component {
   render() {
     return (
-      <main className='main'>
-        <Header />
-        {routes}
-      </main>
+        <main className='main'>
+          <Header />
+          {routes}
+        </main>
     );
   }
 }
