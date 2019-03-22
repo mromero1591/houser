@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 
 //Custom
-import {updateMortgage, updateRent, clearState, addHome} from '../../../ducks/reducer';
+import {updateMortgage, updateRent, clearState} from '../../../ducks/reducer';
 
 class WizardThree extends Component {
 
     createHouse = () => {
+        console.log(this.props);
         const {house_name, street_line_one, city, state, zip_code, img, mortgage,rent} = this.props;
         const newHouse = {
             house_name,
@@ -19,15 +20,15 @@ class WizardThree extends Component {
             img,
             mortgage,rent
         }
-        this.props.addHome(newHouse);
         Axios.post('/api/houses', newHouse)
         .then(res => {
             this.props.clearState();
+            this.props.history.push('/');
         }).catch(err => {
             console.log('faced error increating', err);
         })
-        
     }
+
   render() {
     const {mortgage, rent, updateMortgage,updateRent} = this.props;
     return (
@@ -46,9 +47,7 @@ class WizardThree extends Component {
                 <Link to='/wizard/step2'>
                     <button className='btn form-btn'>Previous Step</button>
                 </Link>
-                <Link to='/'>
-                    <button onClick={this.createHouse} className='btn form-btn form-btn-complete'>Complete</button>
-                </Link>
+                <button onClick={this.createHouse} className='btn form-btn form-btn-complete'>Complete</button>
             </div>
         </section>
     )
@@ -69,4 +68,4 @@ function mapStateToProps(initialState){
     }
 }
 
-export default connect(mapStateToProps, {updateMortgage,updateRent})(WizardThree);
+export default connect(mapStateToProps, {updateMortgage,updateRent, clearState})(WizardThree);

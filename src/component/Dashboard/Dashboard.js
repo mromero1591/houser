@@ -9,30 +9,38 @@ import {addHome, removeHome} from '../../ducks/reducer';
 import "./Dashboard.css";
 
 class Dashboard extends Component {
-  componentWillMount() {
-    Axios.get('/api/houses')
-    .then( res => {
-      const homes = res.data;
-      homes.forEach(home => {
-        this.props.addHome(home);
-      });
-    }).catch(err => {
-      console.log('faced error in inital get', err);
-    });
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      homes: []
+    }
+  }
+  componentDidMount() {
+    this.getHomes();
+    console.log(this.props);
   }
 
   deleteHouse = (id) => {
     Axios.delete(`/api/houses/${id}`)
     .then(res => {
-      this.props.removeHome(id);
+      this.getHomes();
     }).catch(err => {
       console.log('error in deleting a house: ', err);
     });
   }
 
+  getHomes = () => {
+    Axios.get('/api/houses')
+    .then( res => {
+      this.setState({homes: res.data});
+    }).catch(err => {
+      console.log('faced error in inital get', err);
+    });
+  }
+
   render() {
-    const homes = this.props.homes.map( home => {
-console.log(home);
+    const homes = this.state.homes.map( home => {
       return(
         <House key={home.id} home={home} deleteHouse={this.deleteHouse}/>
       );
@@ -58,10 +66,4 @@ console.log(home);
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    homes: state.homes
-  }
-}
-
-export default connect(mapStateToProps, {addHome, removeHome})(Dashboard);
+export default Dashboard;
