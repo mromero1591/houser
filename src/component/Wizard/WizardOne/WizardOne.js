@@ -22,16 +22,16 @@ class WizardOne extends Component {
 
                 <div className="form-group-col-3">
                     <div className="input-group">
-                        <label className='input-label'>State:</label>
-                        <input onChange={(e) => {updateCity(e.target.value)}} className='input' type='text' value={city} />
-                    </div>
-                    <div className="input-group">
                         <label className='input-label'>City:</label>
                         <input onChange={(e) => {updateState(e.target.value)}} className='input' type='text' value={state} />
                     </div>
                     <div className="input-group">
+                        <label className='input-label'>State:</label>
+                        <input onChange={(e) => {updateCity(e.target.value)}} className='input' type='text' value={city} />
+                    </div>
+                    <div className="input-group">
                         <label className='input-label'>Zip:</label>
-                        <input onChange={(e) => {updateZipCode(e.target.value)}} className='input' type='text' value={zip_code} />
+                        <input onChange={(e) => {updateZipCode(e.target.value)}} className='input' type='number' value={zip_code} />
                     </div>
                 </div>
                 <Link to='/wizard/step2' className='form-link'>

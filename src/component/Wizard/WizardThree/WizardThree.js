@@ -35,12 +35,12 @@ class WizardThree extends Component {
         <section className='form-section'>
             <div className="input-group">
                 <label className='input-label'>Monthly Mortgage Amount:</label>
-                <input onChange={(e) => {updateMortgage(e.target.value)}} className='input' type='text' value={mortgage} />
+                <input onChange={(e) => {updateMortgage(e.target.value)}} className='input' type='number' value={mortgage} />
             </div>
 
             <div className="input-group">
                 <label className='input-label'>Desired Monthly Rent:</label>
-                <input onChange={(e) => {updateRent(e.target.value)}} className='input' type='text' value={rent} />
+                <input onChange={(e) => {updateRent(e.target.value)}} className='input' type='number' value={rent} />
             </div>
 
             <div className="wizard-link-group">
