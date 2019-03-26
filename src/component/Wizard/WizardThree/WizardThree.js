@@ -33,6 +33,7 @@ class WizardThree extends Component {
     const {mortgage, rent, updateMortgage,updateRent} = this.props;
     return (
         <section className='form-section'>
+            <div className='form-sub-title'>Recommended Rent: {mortgage * 1.25}</div>
             <div className="input-group">
                 <label className='input-label'>Monthly Mortgage Amount:</label>
                 <input onChange={(e) => {updateMortgage(e.target.value)}} className='input' type='number' value={mortgage} />
