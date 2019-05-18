@@ -1,0 +1,1 @@
+ALTER TABLE new_houses ADD COLUMN img TEXT, ADD COLUMN mortgage INT, ADD Column amount INT, ADD COLUMN rent INT
