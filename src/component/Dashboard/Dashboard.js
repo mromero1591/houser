@@ -18,6 +18,7 @@ class Dashboard extends Component {
   }
   componentDidMount() {
     this.getHomes();
+    console.log(navigator)
   }
 
   deleteHouse = (id) => {
